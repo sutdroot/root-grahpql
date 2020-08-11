@@ -1,0 +1,6 @@
+{
+  "DEBUG": true,
+  "SQLALCHEMY_DATABASE_URI": "postgresql://postgres:shohamc1@localhost:5432/data",
+  "SQLALCHEMY_COMMIT_ON_TEARDOWN": true,
+  "SQLALCHEMY_TRACK_MODIFICATIONS": true
+}
