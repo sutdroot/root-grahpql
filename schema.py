@@ -24,11 +24,12 @@ class AddFeedback(graphene.Mutation):
         email = String(required=True)
         message = String(required=True)
         created = DateTime(required=True)
+        status = String(required=True)
 
     feedback = Field(FeedbackObject)
 
-    def mutate(self, info, address, name, email, message, created):
-        n_fb = Feedback(address, name, email, message, created)
+    def mutate(self, info, address, name, email, message, created, status):
+        n_fb = Feedback(address, name, email, message, created, status)
         db_session.add(n_fb)
         db_session.commit()
 
@@ -42,11 +43,12 @@ class UpdateFeedback(graphene.Mutation):
         name = String()
         email = String()
         message = String()
+        status = String()
 
     feedback = Field(FeedbackObject)
 
     def mutate(self, info, *args, **kwargs):
-        feedback_fields = ['address', 'name', 'email', 'message']
+        feedback_fields = ['address', 'name', 'email', 'message', 'status']
 
         fb = db_session.query(Feedback).filter_by(
             fbid=kwargs.get('fbid')).first()
